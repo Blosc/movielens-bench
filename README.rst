@@ -1,7 +1,7 @@
 movielens-bench
 ===============
 
-Datafiles for the MovieLens for benchmarking purposes.
+Datafiles for the MovieLens dataset for benchmarking purposes.
 
 These are slightly modified versions of the originals so as to
 easy the import process. The original MovieLens datasets are over here:
