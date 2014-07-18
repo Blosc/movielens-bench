@@ -9,7 +9,9 @@ import numpy as np
 import bcolz
 import pandas as pd
 
-dset = 'movielens/ml-1m'
+bcolz.print_versions()
+
+dset = 'ml-1m'
 fuser = os.path.join(dset, 'users.dat')
 fdata = os.path.join(dset, 'ratings.dat.gz')
 fitem = os.path.join(dset, 'movies.dat')

@@ -9,16 +9,18 @@ import numpy as np
 import bcolz
 import pandas as pd
 
-dset = 'movielens/ml-10m'
+bcolz.print_versions()
+
+dset = 'ml-10m'
 ftags = os.path.join(dset, 'tags.dat')
 fdata = os.path.join(dset, 'ratings.dat.gz')
 fitem = os.path.join(dset, 'movies.dat')
 
 bcolz.defaults.cparams['cname'] = 'blosclz'
-bcolz.defaults.cparams['clevel'] = 3
+bcolz.defaults.cparams['clevel'] = 1
 bcolz.defaults.eval_vm = "python"
-# bcolz.blosc_set_nthreads(1)
-# bcolz.numexpr.set_num_threads(1)
+bcolz.blosc_set_nthreads(1)
+bcolz.numexpr.set_num_threads(2)
 
 t0 = time()
 # pass in column names for each CSV
