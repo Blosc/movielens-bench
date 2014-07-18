@@ -18,7 +18,7 @@ fitem = os.path.join(dset, 'movies.dat')
 
 bcolz.defaults.cparams['cname'] = 'lz4'
 bcolz.defaults.cparams['clevel'] = 5
-bcolz.defaults.eval_vm = "numexpr"
+# bcolz.defaults.eval_vm = "numexpr"
 # bcolz.blosc_set_nthreads(1)
 # bcolz.numexpr.set_num_threads(1)
 
