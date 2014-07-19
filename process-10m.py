@@ -16,11 +16,16 @@ ftags = os.path.join(dset, 'tags.dat')
 fdata = os.path.join(dset, 'ratings.dat.gz')
 fitem = os.path.join(dset, 'movies.dat')
 
+# Global settings for bcolz and pandas
 bcolz.defaults.cparams['cname'] = 'blosclz'
 bcolz.defaults.cparams['clevel'] = 1
 # bcolz.defaults.eval_vm = "numexpr"
 # bcolz.blosc_set_nthreads(1)
 # bcolz.numexpr.set_num_threads(1)
+from pandas.computation import expressions as expr
+expr.set_use_numexpr(True)
+expr.set_numexpr_threads(1)
+
 
 t0 = time()
 # pass in column names for each CSV
@@ -50,13 +55,15 @@ print("Time for dataframe merges: %.2f" % (time()-t0,))
 #print(most_rated)
 
 t0 = time()
-result = lens[lens['title'] == 'Tom and Huck (1995)']
+#result = lens[lens['title'] == 'Tom and Huck (1995)']
+result = lens.query("title == 'Tom and Huck (1995)'")
 print("time (and length) for simple query with pandas: %.2f (%d)" %
       (time()-t0, len(result)))
 #print repr(result)
 
 t0 = time()
-result = lens[(lens['title'] == 'Tom and Huck (1995)') & (lens['rating'] == 5)]['user_id']
+#result = lens[(lens['title'] == 'Tom and Huck (1995)') & (lens['rating'] == 5)]['user_id']
+result = lens.query("(title == 'Tom and Huck (1995)') & (rating == 5)")['user_id']
 print("time (and length) for complex query with pandas: %.2f (%d)" %
       (time()-t0, len(result)))
 #print repr(result)

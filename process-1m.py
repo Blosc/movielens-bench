@@ -46,7 +46,8 @@ print("Time for merging the datasets: %.2f" % (time()-t0,))
 #print(most_rated)
 
 t0 = time()
-result = lens[lens['title'] == 'Tom and Huck (1995)']
+#result = lens[lens['title'] == 'Tom and Huck (1995)']
+result = lens.query("title == 'Tom and Huck (1995)'")
 print("time (and length) for simple query with pandas: %.2f (%d)" %
       (time()-t0, len(result)))
 #print repr(result)
@@ -54,7 +55,8 @@ print("time (and length) for simple query with pandas: %.2f (%d)" %
 t0 = time()
 #result = lens[(lens['title'] == 'Tom and Huck (1995)') & (lens['sex'] == 'M')]
 # result = lens[(lens['title'] == 'Tom and Huck (1995)') & ((lens['age'] > 18) & (lens['age'] < 32))]
-result = lens[(lens['title'] == 'Tom and Huck (1995)') & (lens['rating'] == 5)]['user_id']
+#result = lens[(lens['title'] == 'Tom and Huck (1995)') & (lens['rating'] == 5)]['user_id']
+result = lens.query("(title == 'Tom and Huck (1995)') & (rating == 5)")['user_id']
 print("time (and length) for complex query with pandas: %.2f (%d)" %
       (time()-t0, len(result)))
 #print repr(result)
