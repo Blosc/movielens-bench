@@ -20,11 +20,11 @@ fitem = os.path.join(dset, 'movies.dat')
 bcolz.defaults.cparams['cname'] = 'blosclz'
 bcolz.defaults.cparams['clevel'] = 1
 # bcolz.defaults.eval_vm = "numexpr"
-# bcolz.blosc_set_nthreads(1)
-# bcolz.numexpr.set_num_threads(1)
-from pandas.computation import expressions as expr
-expr.set_use_numexpr(True)
-expr.set_numexpr_threads(1)
+bcolz.blosc_set_nthreads(1)
+bcolz.numexpr.set_num_threads(1)
+# from pandas.computation import expressions as expr
+# expr.set_use_numexpr(True)
+# expr.set_numexpr_threads(1)
 
 
 t0 = time()
